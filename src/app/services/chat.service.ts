@@ -39,6 +39,7 @@ import {
 } from '@angular/fire/storage';
 import { getToken, Messaging, onMessage } from '@angular/fire/messaging';
 import { Router } from '@angular/router';
+import { AppCheck } from '@angular/fire/app-check';
 
 type ChatMessage = {
   name: string | null,
@@ -55,6 +56,7 @@ type ChatMessage = {
 })
 export class ChatService {
   firestore: Firestore = inject(Firestore);
+  appCheck: AppCheck = inject(AppCheck);
   auth: Auth = inject(Auth);
   storage: Storage = inject(Storage);
   messaging: Messaging = inject(Messaging);
@@ -71,6 +73,7 @@ export class ChatService {
     this.userSubscription = this.user$.subscribe((aUser: User | null) => {
       this.currentUser = aUser;
     });
+    this.saveMessagingDeviceToken();
   }
 
   // Signs-in Friendly Chat.
