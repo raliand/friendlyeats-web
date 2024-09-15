@@ -1,33 +1,26 @@
 import { inject, Injectable } from '@angular/core';
 import {
   Auth,
-  authState,
   signInWithPopup,
   GoogleAuthProvider,
   signOut,
   user,
-  getAuth,
   User,
 } from '@angular/fire/auth';
-import { map, switchMap, firstValueFrom, filter, Observable, Subscription } from 'rxjs';
+import { Subscription } from 'rxjs';
 import {
   doc,
-  docData,
   DocumentReference,
   Firestore,
-  getDoc,
   setDoc,
   updateDoc,
   collection,
   addDoc,
-  deleteDoc,
   collectionData,
-  Timestamp,
   serverTimestamp,
   query,
   orderBy,
   limit,
-  onSnapshot,
   DocumentData,
   FieldValue,
 } from '@angular/fire/firestore';
@@ -39,7 +32,6 @@ import {
 } from '@angular/fire/storage';
 import { getToken, Messaging, onMessage } from '@angular/fire/messaging';
 import { Router } from '@angular/router';
-import { AppCheck } from '@angular/fire/app-check';
 
 type ChatMessage = {
   name: string | null,
@@ -56,7 +48,6 @@ type ChatMessage = {
 })
 export class ChatService {
   firestore: Firestore = inject(Firestore);
-  appCheck: AppCheck = inject(AppCheck);
   auth: Auth = inject(Auth);
   storage: Storage = inject(Storage);
   messaging: Messaging = inject(Messaging);
