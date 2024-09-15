@@ -14,10 +14,10 @@ export const appConfig: ApplicationConfig = {
   providers: [
     provideRouter(routes), 
     provideFirebaseApp(() => initializeApp(environment.firebase)),
-    provideAppCheck(() => initializeAppCheck(getApp(), {
-        provider: new ReCaptchaV3Provider('6LdYnBMqAAAAAE2pI6QujbIBOE4HRFC7WJ73TeiG'),
-        isTokenAutoRefreshEnabled: true
-    })),
+    // provideAppCheck(() => initializeAppCheck(getApp(), {
+    //     provider: new ReCaptchaV3Provider('6LdYnBMqAAAAAE2pI6QujbIBOE4HRFC7WJ73TeiG'),
+    //     isTokenAutoRefreshEnabled: true
+    // })),
     provideFirestore(() => getFirestore()),
     provideFunctions(() => getFunctions()),
     provideAuth(() => getAuth()), 
